@@ -61,7 +61,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
               return SlideTransition(
                 position: slidingAnimation,
                 child: const Text(
-                  'Welcome To SignC',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color:  Color(0xFF7852A9)),
+                  'Welcome To SignC',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Color(0xFF1565C0)),
                   textAlign: TextAlign.center,
                 ),
               );

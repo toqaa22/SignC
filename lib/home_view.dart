@@ -7,12 +7,19 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
 
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text('Sign C',style: TextStyle(color: Color(0xFF2196F3),fontWeight: FontWeight.bold),),
+        centerTitle: true,
+      ),
+
       body: Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color(0xFFB47EDE), // baby violet color
-                Color(0xFFA1C4FD), // baby blue color
+                Color(0xFF42A5F5),
+                Color(0xFF90CAF9),
+                Color(0xFFA1C4FD),
                 Color(0xFFCAE9F5),
               ],
               begin: Alignment.topCenter,
@@ -56,7 +63,7 @@ class HomeView extends StatelessWidget {
                               bottom: 5,
                               child: CircleAvatar(
                                 backgroundImage:
-                                AssetImage('assets/images/asl detection.png'),
+                                AssetImage('assets/images/WhatsApp Image 2023-05-26 at 5.06.48 PM.jpeg'),
                               ),
                             ),
                           ],
@@ -93,7 +100,7 @@ class HomeView extends StatelessWidget {
                               bottom: 5,
                               child: CircleAvatar(
                                 backgroundImage:
-                                AssetImage('assets/images/currency detection2.jpg'),
+                                AssetImage('assets/images/WhatsApp Image 2023-05-26 at 4.56.23 PM.jpeg'),
                               ),
                             ),
                           ],

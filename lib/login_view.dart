@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:signc/custom_button.dart';
 import 'package:signc/custom_text_field.dart';
@@ -28,10 +30,11 @@ class LogInView extends StatelessWidget {
                   decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-
-                          Color(0xFFB47EDE), // baby violet color
-                          Color(0xFFA1C4FD), // baby blue color
+                          Color(0xFF42A5F5),
+                          Color(0xFF90CAF9),
+                          Color(0xFFA1C4FD),
                           Color(0xFFCAE9F5),
+                          Colors.white,
                         ],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
@@ -83,15 +86,48 @@ class LogInView extends StatelessWidget {
                   ),
                   CustomButton(
                     ontap: () async {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>  HomeView(),
-                          ));
+                      try {
+                        var auth = FirebaseAuth.instance;
+                        auth.signInWithEmailAndPassword(email: email!, password: password!);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) => const HomeView(),
+                            ));
+                      } on FirebaseAuthException catch (e){
+                        if (e.code == 'user-not-found') {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text('Error'),
+                                content: const Text('No user found for that email.'),
+                                actions: [
+                                  TextButton(
+                                    child: const Text('Close'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+
+                          // showSnackBar(context, "No user found for that email.");
+                        }
+
+                      }
+
+
+
+
+
+
 
                     },
                     name: 'LogIn',
-                    color: const Color(0xFF7852A9),),
+                    color: const Color(0xFF2196F3),),
                   const SizedBox(
                     height: 10,
                   ),
